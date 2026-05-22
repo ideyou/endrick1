@@ -1,0 +1,19 @@
+{
+  "id": "EndrickHUB",
+  "name": "Endrick's profile",
+  "short_name": "Endrick's profile",
+  "scope": "./",
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#F7BA23",
+  "icons": [
+    {
+      "src": "profile.avif",
+      "sizes": "any",
+      "type": "image/avif"
+    }
+  ],
+  "app_name": "Endrick's profile",
+  "description": "Projetos do Github e gostos musicais e visuais."
+}
