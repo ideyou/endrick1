@@ -1,0 +1,35 @@
+.DIVS {
+    display: flex; 
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.Vermelho { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 400px; 
+    flex-grow: 1; 
+    background-color: rgb(221, 0, 0);
+}
+
+.Azul {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    flex-grow: 1; 
+    background-color: rgb(0, 74, 211);
+}
+
+.Verde { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    height: 500px;
+    background-color: rgb(6, 185, 0);
+    margin-top: 0; 
+}
+

@@ -1,0 +1,13 @@
+{
+  "color": "#000",
+  "background_color": "#FBB737",
+  "custom_css": "style.css",
+  "icons": [
+    {
+      "src": "profile.avif",
+      "sizes": "any",
+      "type": "image/avif"
+    }
+  ],
+  "name": "Endrick Renaldo"
+}

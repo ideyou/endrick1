@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="pt-BR" data-bs-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Album · Geração Z — Infância e Nostalgia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tahoma&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Tahoma, Verdana, sans-serif;
+      background: #1d3d5f;
+      background-image:
+        radial-gradient(ellipse at 20% 30%, rgba(26, 45, 71, 0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(0,200,100,0.07) 0%, transparent 55%);
+    }
+
+    /* MARQUEE */
+    .marquee-bar {
+      background: #1a0050; color: #cc88ff;
+      font-size: 12px; font-weight: 700;
+      padding: 4px 0; border-bottom: 2px solid #4400aa;
+      overflow: hidden; white-space: nowrap;
+    }
+    .marquee-inner { display:inline-block; animation: marquee 28s linear infinite; }
+    @keyframes marquee { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+
+    /* NAVBAR */
+    .navbar-main {
+      background: linear-gradient(180deg,#18324e 0%,#12122a 100%);
+      border-bottom: 2px solid #4444aa;
+      padding: 0; min-height: 36px;
+    }
+    .navbar-main .nav-link { color: #aaaaee !important; font-size: 12px; padding: 8px 12px !important; }
+    .navbar-main .nav-link:hover { color: white !important; background: rgba(255,255,255,0.1); border-radius: 4px; }
+    .navbar-brand-main {
+      font-size: 14px; font-weight: 700; color: #cc88ff !important;
+      text-decoration: none; padding: 8px 16px;
+      text-shadow: 0 0 8px rgba(180,100,255,0.5);
+    }
+    .xp-tray {
+      background: rgba(0,0,0,0.3); border-left: 1px solid #333366;
+      padding: 0 12px; display:flex; align-items:center; gap:8px;
+      height: 36px; font-size: 11px; color: #aaaacc;
+    }
+    .xp-clock { font-size: 10px; color: #aaaacc; text-align:center; line-height:1.3; }
+
+    /* HERO */
+    .hero-aero {
+      background: linear-gradient(160deg,#b8e8ff 0%,#80d4f8 25%,#a8f0da 65%,#c8f8ec 100%);
+      border-bottom: 3px solid rgba(255,255,255,0.55);
+      position: relative; overflow: hidden;
+    }
+    .hero-aero::before {
+      content:''; position:absolute; top:-40%; left:-5%; width:110%; height:180%;
+      background: radial-gradient(ellipse,rgba(255,255,255,0.38) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .hero-aero h1 { font-weight:700; font-size:2rem; color:#0a3a60; text-shadow:0 2px 4px rgba(255,255,255,0.9); }
+    .hero-aero .lead { color:#1a5070; font-size:13px; }
+    .aero-bubble {
+      position:absolute; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.55),rgba(255,255,255,0.08));
+      border:1px solid rgba(255,255,255,0.45); pointer-events:none;
+    }
+    .btn-aero {
+      background:linear-gradient(180deg,rgba(255,255,255,0.72),rgba(160,228,255,0.55),rgba(80,190,255,0.45));
+      border:1px solid rgba(255,255,255,0.85); color:#0a3a60;
+      font-weight:700; font-size:12px; border-radius:20px; padding:6px 20px;
+      text-decoration:none; transition:all 0.15s;
+    }
+    .btn-aero:hover { background:rgba(255,255,255,0.9); color:#051e38; transform:translateY(-1px); }
+    .visitor-badge {
+      background:rgba(0,0,0,0.13); border:1px solid rgba(255,255,255,0.35);
+      border-radius:8px; padding:3px 12px; font-size:11px; font-weight:700;
+      color:#0a3a60; display:inline-block;
+    }
+
+    /* CARD BASE */
+    .card-2000 {
+      border:none; border-radius:8px; overflow:hidden;
+      box-shadow:2px 3px 12px rgba(0,0,0,0.55);
+      transition:transform 0.15s, box-shadow 0.15s;
+    }
+    .card-2000:hover { transform:translateY(-4px); box-shadow:4px 7px 20px rgba(0,0,0,0.65); }
+    .card-2000 img { width:100%; height:160px; object-fit:cover; display:block; }
+    .card-no-img { width:100%; height:160px; display:flex; align-items:center; justify-content:center;}
+
+    .titlebar {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:3px 7px; font-size:11px; font-weight:700;
+      color:white; text-shadow:1px 1px 1px rgba(0,0,0,0.5); user-select:none;
+    }
+    .tb-btns { display:flex; gap:2px; }
+    .tb-btn {
+      width:14px; height:14px; border-radius:3px; border:1px solid rgba(0,0,0,0.3);
+      font-size:8px; display:flex; align-items:center; justify-content:center;
+      font-weight:900; line-height:1; cursor:pointer;
+    }
+    .tb-min { background:linear-gradient(180deg,#eec030,#b08000); color:#5a3800; }
+    .tb-max { background:linear-gradient(180deg,#50c050,#208020); color:white; }
+    .tb-cls { background:linear-gradient(180deg,#ff5555,#cc1818); color:white; }
+
+    .btn-xp {
+      background:linear-gradient(180deg,#f4f2ea,#d8d4c4,#c4c0ac);
+      border:1px solid #7a7868; color:#000; font-size:11px;
+      font-family:Tahoma,sans-serif; padding:2px 10px; border-radius:3px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .btn-xp:hover { background:linear-gradient(180deg,#dce8fc,#b8ccf4,#9cb4ec); border-color:#1058b0; color:#000; }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* ===== 1. GTA SAN ANDREAS ===== */
+    .tb-gta { background:linear-gradient(180deg,#cc8800,#664400); }
+    .body-gta { background:#111; padding:12px; color:#fff; }
+    .gta-hud { background:rgba(0,0,0,0.7); border:1px solid #333; padding:7px 9px; font-family:'Courier New',monospace; margin-bottom:8px; border-radius:2px; }
+    .gta-hp  { color:#ff3333; font-size:11px; }
+    .gta-armor { color:#aaaaff; font-size:11px; }
+    .gta-money { color:#00dd00; font-size:12px; font-weight:700; }
+    .gta-wanted { color:#ffcc00; font-size:14px; letter-spacing:3px; }
+    .gta-radio { font-size:10px; color:#ffaa00; border-top:1px solid #333; margin-top:5px; padding-top:5px; }
+
+    /* ===== 2. ADOBE FLASH / FRIV ===== */
+    .tb-flash { background:linear-gradient(180deg,#cc2200,#880000); }
+    .body-flash { background:#111122; padding:12px; color:#fff; }
+    .flash-screen { background:#000; border:2px solid #222; height:70px; overflow:hidden; margin-bottom:8px; }
+    .flash-pixels { display:grid; grid-template-columns:repeat(14,1fr); gap:1px; width:100%; height:100%; padding:3px; }
+    .flash-pixel { border-radius:1px; }
+    .friv-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:8px; }
+    .friv-cell {
+      aspect-ratio:1; border-radius:4px; display:flex; align-items:center;
+      justify-content:center; font-size:16px; border:1px solid rgba(255,255,255,0.1);
+    }
+    .flash-score { font-family:'Courier New',monospace; font-size:11px; color:#00ff88; }
+    .flash-lives { color:#ff3333; font-size:13px; }
+    .btn-flash {
+      background:linear-gradient(180deg,#ff6600,#cc2200); border:1px solid #ff8800;
+      color:white; font-size:10px; font-weight:700; border-radius:3px; padding:3px 10px; cursor:pointer;
+    }
+
+    /* ===== 3. YOUTUBE ANTIGO ===== */
+    .tb-yt { background:linear-gradient(180deg,#cc1100,#880000); }
+    .body-yt { background:#f8f8f0; padding:12px; }
+    .yt-bar { background:#ccc; height:6px; border-radius:2px; margin-bottom:6px; }
+    .yt-bar-fill { background:#cc1100; height:100%; width:42%; border-radius:2px; }
+    .yt-stars { color:#cc8800; font-size:13px; }
+    .yt-views { font-size:11px; color:#cc1100; font-weight:700; }
+    .yt-tag { background:#e8e8e0; border:1px solid #ccc; font-size:10px; color:#1a1a99; padding:1px 6px; border-radius:2px; margin:1px; display:inline-block; }
+    .yt-title { font-size:12px; font-weight:700; color:#111; margin-bottom:4px; }
+
+    /* ===== 4. FRUTIGER AERO ===== */
+    .tb-faero { background:linear-gradient(180deg,#88d8f0,#3898c8); }
+    .body-faero { background:linear-gradient(135deg,#c0f0e4,#a4dff4); padding:12px; position:relative; overflow:hidden; }
+    .faero-gloss { position:absolute; top:0; left:0; right:0; height:45%; background:linear-gradient(180deg,rgba(255,255,255,0.45),transparent); pointer-events:none; }
+    .faero-tag { background:rgba(255,255,255,0.52); border:1px solid rgba(255,255,255,0.8); border-radius:12px; font-size:10px; color:#0e4a7a; padding:2px 9px; display:inline-block; margin:2px; }
+
+    /* ===== 5. CS 1.6 ===== */
+    .tb-cs { background:linear-gradient(180deg,#334488,#112266); }
+    .body-cs { background:#0a0a18; padding:12px; color:#fff; }
+    .cs-scoreboard { background:#000; border:1px solid #223; font-family:'Courier New',monospace; font-size:10px; padding:6px 8px; margin-bottom:6px; border-radius:2px; }
+    .cs-header { color:#8888ff; font-weight:700; border-bottom:1px solid #223; padding-bottom:3px; margin-bottom:3px; font-size:10px; }
+    .cs-ct { color:#88aaff; }
+    .cs-t  { color:#ffaa44; }
+    .cs-kill { color:#ff4444; }
+    .cs-buy { background:#001a00; border:1px solid #004400; border-radius:2px; padding:4px 6px; font-family:'Courier New',monospace; font-size:10px; color:#00cc00; }
+
+    /* ===== 6. MINECRAFT ===== */
+    .tb-mc { background:linear-gradient(180deg,#4a7a28,#2a5010); }
+    .body-mc { background:#c6b896; padding:12px; font-family:'Courier New',monospace; }
+    .mc-dirt {
+      height:20px; margin-bottom:6px;
+      background:repeating-linear-gradient(90deg,#8B6914 0,#8B6914 8px,#7a5c10 8px,#7a5c10 16px);
+      border-top:3px solid #5a9a20; border-radius:2px;
+    }
+    .mc-inv { display:grid; grid-template-columns:repeat(9,1fr); gap:2px; margin-bottom:6px; }
+    .mc-slot {
+      aspect-ratio:1; background:#8b8b8b; border:2px solid;
+      border-color:#fff #555 #555 #fff; display:flex; align-items:center; justify-content:center; font-size:12px;
+    }
+    .mc-hp { color:#cc2200; font-size:13px; letter-spacing:1px; }
+    .mc-food { color:#cc8800; font-size:13px; letter-spacing:1px; }
+    .mc-xp-bar { background:#333; height:8px; border-radius:1px; margin-top:4px; overflow:hidden; }
+    .mc-xp-fill { background:#80ff00; height:100%; width:60%; }
+
+    /* ===== 7. ROBLOX ===== */
+    .tb-roblox { background:linear-gradient(180deg,#cc0000,#880000); }
+    .body-roblox { background:#1a1a1a; padding:12px; color:#fff; }
+    .roblox-card {
+      background:#222; border:1px solid #333; border-radius:6px;
+      padding:8px; margin-bottom:6px; display:flex; align-items:center; gap:8px;
+    }
+    .roblox-thumb { width:40px; height:40px; background:#333; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+    .roblox-title { font-size:12px; font-weight:700; color:#fff; margin:0 0 2px; }
+    .roblox-players { font-size:10px; color:#888; margin:0; }
+    .roblox-players span { color:#00cc44; }
+    .robux { color:#00cc44; font-size:12px; font-weight:700; }
+
+    /* ===== 8. TV CULTURA ===== */
+    .tb-tv { background:linear-gradient(180deg,#cc6600,#884400); }
+    .body-tv { background:#fff8ee; padding:12px; }
+    .tv-screen {
+      background:#111; border:4px solid #c8a060; border-radius:6px;
+      height:72px; display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden; margin-bottom:8px;
+    }
+    .tv-scanline {
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background:repeating-linear-gradient(0deg,rgba(0,0,0,0.2) 0,rgba(0,0,0,0.2) 1px,transparent 1px,transparent 3px);
+      pointer-events:none;
+    }
+    .tv-logo { font-size:32px; filter:drop-shadow(0 0 8px rgba(255,150,0,0.6)); }
+    .tv-show { background:#fff3e0; border:1px solid #f0c080; border-radius:4px; padding:5px 8px; font-size:11px; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+    .tv-show-icon { font-size:16px; }
+    .tv-channel { font-size:11px; color:#cc6600; font-weight:700; }
+
+    /* ===== 9. CLASH OF CLANS ===== */
+    .tb-coc { background:linear-gradient(180deg,#8B4513,#4a1a00); }
+    .body-coc { background:#1a2e0a; padding:12px; color:#fff; }
+    .coc-resources { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px; }
+    .coc-res {
+      background:rgba(0,0,0,0.4); border:1px solid #4a3a00;
+      border-radius:6px; padding:5px 8px; text-align:center;
+    }
+    .coc-res-icon { font-size:18px; display:block; }
+    .coc-res-val { font-size:11px; font-weight:700; color:#ffdd44; }
+    .coc-res-label { font-size:9px; color:#aaa; }
+    .coc-building { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px; }
+    .coc-btn {
+      background:linear-gradient(180deg,#88cc00,#448800); border:2px solid #224400;
+      color:white; font-size:10px; font-weight:700; border-radius:6px; padding:4px 10px; cursor:pointer;
+    }
+    .coc-timer { font-size:10px; color:#ff8844; font-family:'Courier New',monospace; }
+
+    /* FOOTER */
+    footer { background:linear-gradient(180deg,#0a1220,#04080e); border-top:2px solid #1a3a6a; }
+    footer a { color:#60a0e0 !important; }
+    .footer-counter { background:#000; border:2px inset #444; padding:4px 12px; font-family:'Courier New',monospace; font-size:15px; color:#ff3300; letter-spacing:4px; display:inline-block; }
+    .webring { font-size:11px; color:#506080; }
+  </style>
+</head>
+<body>
+
+<div class="marquee-bar">
+  <span class="marquee-inner">
+    ★ GTA SA: missão completa!! ★ &nbsp;&nbsp;&nbsp; Roblox: novo mapa saiu!! &nbsp;&nbsp;&nbsp; ★ Minecraft: sobrevivi a noite toda!! ★ &nbsp;&nbsp;&nbsp; Clash of Clans: base destruída ngl &nbsp;&nbsp;&nbsp; ★ Friv aberto na outra aba ★ &nbsp;&nbsp;&nbsp; TV Cultura passando Cocoricó &nbsp;&nbsp;&nbsp; ★ YouTube: já tinha 301+ views ★ &nbsp;&nbsp;&nbsp;
+  </span>
+</div>
+
+<header>
+  <nav class="navbar navbar-main navbar-expand-sm">
+    <div class="container">
+      <a class="navbar-brand-main" href="#">✦ Album da Infância</a>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Jogos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">TV</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Internet</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Memórias</a></li>
+        </ul>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="xp-tray d-none d-sm-flex">
+        <span>🎮</span><span>🔊</span>
+        <div class="xp-clock" id="xp-clock">00:00<br>AM</div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="hero-aero py-5 text-center position-relative">
+  <div class="aero-bubble" style="width:90px;height:90px;top:8%;left:4%;opacity:0.45;"></div>
+  <div class="aero-bubble" style="width:55px;height:55px;top:60%;left:12%;opacity:0.38;"></div>
+  <div class="aero-bubble" style="width:130px;height:130px;top:2%;right:5%;opacity:0.28;"></div>
+  <div class="aero-bubble" style="width:65px;height:65px;bottom:8%;right:18%;opacity:0.48;"></div>
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="visitor-badge mb-3">👁 Visitas: <span id="counter">001.337</span></div>
+        <h1>Album da Geração Z</h1>
+        <p class="lead">Crescer nos anos 2010 — cada card é uma memória</p>
+        <p style="font-size:11px;color:#2a6090;">✦ Você com certeza se lembra de pelo menos 8 desses ✦</p>
+        <div class="mt-3 d-flex gap-2 justify-content-center flex-wrap">
+          <a href="#" class="btn btn-aero">Ver Álbum</a>
+          <a href="#" class="btn btn-aero">Livro de Visitas</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="py-4">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <!-- 1. GTA SAN ANDREAS -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-gta">
+              <span>🎮 GTA San Andreas</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/pt/d/d3/Grand_Theft_Auto_San_Andreas_capa.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-gta">
+              <div class="gta-hud">
+                <div class="gta-hp">❤ HP: <strong>100</strong> &nbsp; 🛡 Armor: <strong>100</strong></div>
+                <div class="gta-money">💰 $250.000</div>
+                <div class="gta-wanted">★ ★ ★ ☆ ☆ ☆</div>
+                <div class="gta-radio">📻 Radio Los Santos — "Still D.R.E."</div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group"><a href="https://store.steampowered.com/app/12120/Grand_Theft_Auto_San_Andreas/?l=portuguese" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp" style="background:#222;border-color:#555;color:#ccc;">Jogar</a><button class="btn btn-sm btn-xp" style="background:#222;border-color:#555;color:#ccc;">Missões</button></div>
+                <small style="font-size:10px;color:#888;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. ADOBE FLASH / FRIV -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-flash">
+              <span>⚡ Friv.com — Flash Games</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://www.frivclassic.com/assets/img/social-banner-friv-classic.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-flash">
+              <div class="friv-grid">
+                <div class="friv-cell" style="background:#200000;">🏎️</div>
+                <div class="friv-cell" style="background:#001a00;">⚽</div>
+                <div class="friv-cell" style="background:#00001a;">🚀</div>
+                <div class="friv-cell" style="background:#1a1a00;">🧩</div>
+                <div class="friv-cell" style="background:#1a0020;">👾</div>
+                <div class="friv-cell" style="background:#001a1a;">🐢</div>
+                <div class="friv-cell" style="background:#200010;">🗡️</div>
+                <div class="friv-cell" style="background:#101a00;">🌟</div>
+              </div>
+              <div class="d-flex flex-column align-items-center" style="padding:10px;gap:6px;">
+                <a href="https://www.frivclassic.com/" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-flash" style="background:linear-gradient(180deg,#ff8c00,#ff5200); border:1px solid #ff8800; color:#fff; font-weight:800; padding:8px 20px; border-radius:20px;">▶ Jogar Friv</a>
+                <div style="font-size:12px;color:#ccc;">Top score: <strong>47.320</strong> &nbsp; <span style="color:#ff6666">♥♥♥</span></div>
+                <small style="font-size:10px;color:#888;">Atualizado: 9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. YOUTUBE ANTIGO -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-yt">
+              <span>▶ YouTube — Broadcast Yourself</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://i.ytimg.com/vi/rB11hfPdtWk/maxresdefault.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; flex-direction:column;gap:6px;">
+              <div style="font-size:52px;color:rgba(255,255,255,0.8);">▶</div>
+              <div style="font-size:10px;color:#555;font-family:'Courier New';">melhor_video_ever_HD.flv</div>
+            </div>
+            <div class="body-yt">
+              <div class="yt-bar"><div class="yt-bar-fill"></div></div>
+              <div class="yt-title">Compilation engraçada 2016 kkkk</div>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="yt-stars">★★★★☆</div>
+                <div class="yt-views">301 visualizações</div>
+              </div>
+              <div>
+                <span class="yt-tag">anos2010</span>
+                <span class="yt-tag">nostalgia</span>
+                <span class="yt-tag">meme</span>
+                <span class="yt-tag">kkkk</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="btn-group"><a href="https://www.youtube.com/watch?v=-BWjLu3t7Ks" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Assistir</a><a href="https://www.youtube.com/watch?v=-BWjLu3t7Ks" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Favoritar</a></div>
+                <small style="font-size:10px;color:#888;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. FRUTIGER AERO -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-faero">
+              <span style="color:#0a3a60;">🌿 Frutiger Aero — Vista Glass</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://i.pinimg.com/736x/37/11/e0/3711e0a0ff3ee6b2aa72b9bc51308458.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+              <div style="font-size:58px;filter:drop-shadow(0 4px 10px rgba(0,120,200,0.3));">🌊</div>
+            </div>
+            <div class="body-faero">
+              <div class="faero-gloss"></div>
+              <div style="position:relative;font-size:12px;font-weight:700;color:#0a4060;margin-bottom:6px;text-align:center;">
+                A estética do Windows Vista / 7
+              </div>
+              <div style="position:relative;text-align:center;">
+                <span class="faero-tag">🫧 Glass UI</span>
+                <span class="faero-tag">🌱 Natureza</span>
+                <span class="faero-tag">✨ Glossy</span>
+                <span class="faero-tag">💧 Aero</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-2" style="position:relative;">
+                <div class="btn-group"><a href="https://frutigeraeroarchive.org/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Explorar</a><a href="https://frutigeraeroarchive.org/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Galeria</a></div>
+                <small style="font-size:10px;color:#1a5a7a;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. CS 1.6 -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-cs">
+              <span>🔫 Counter-Strike 1.6</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://s2-techtudo.glbimg.com/nWWltJLb9PHbzeE6YYhQ2vHdQg4=/0x30:779x632/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2020/2/V/5M6MX3Qs2UreMg28Pk9A/de-dust2.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-cs">
+              <div class="cs-scoreboard">
+                <div class="cs-header">PLACAR — de_dust2</div>
+                <div class="cs-ct">[ CT ] JOGADOR_BR &nbsp; K:<span class="cs-kill">18</span> / D:3 &nbsp; ✦</div>
+                <div class="cs-t" style="margin-top:2px;">[ T ] &nbsp;xXnoob420Xx &nbsp;&nbsp; K:<span class="cs-kill">2</span> &nbsp;/ D:14</div>
+              </div>
+              <div class="cs-buy">💰 $3200 &nbsp;|&nbsp; Comprar: AK-47 / AWP / Flash</div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="btn-group"><a href="https://play-cs.com/pt/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp" style="background:#111;border-color:#446;color:#aac;">Entrar</a><a href="https://play-cs.com/shop" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp" style="background:#111;border-color:#446;color:#aac;">Comprar</a></div>
+                <small style="font-size:10px;color:#888;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. MINECRAFT -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-mc">
+              <span>⛏ Minecraft — Survival Mode</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Pocket_Edition_1.1.5.png/revision/latest?cb=20200826153659'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-mc">
+              <div class="mc-dirt"></div>
+              <div class="mc-inv">
+                <div class="mc-slot">⛏</div><div class="mc-slot">🗡️</div><div class="mc-slot">🪵</div>
+                <div class="mc-slot">🪨</div><div class="mc-slot">🌾</div><div class="mc-slot">🍎</div>
+                <div class="mc-slot">💎</div><div class="mc-slot">🔥</div><div class="mc-slot"></div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="mc-hp">❤❤❤❤❤❤❤❤❤❤</div>
+                <div class="mc-food">🍗🍗🍗🍗🍗🍗🍗🍗🍗🍗</div>
+              </div>
+              <div class="mc-xp-bar mt-1"><div class="mc-xp-fill"></div></div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="btn-group"><a href="https://www.minecraft.net/pt-br" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Craftar</a><a href="https://www.minecraft.net/pt-br" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Inventário</a></div>
+                <small style="font-size:10px;color:#6b4226;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. ROBLOX -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-roblox">
+              <span>🟥 Roblox — Play Now</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://assets.userstyles.org/assets_packs/type=style/user_id=4577016/screenshot_de4d6dcd-79a3-410b-80d0-d65d0ca2f50e.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-roblox">
+              <div class="roblox-card">
+                <div class="roblox-thumb">⚔️</div>
+                <div><p class="roblox-title">Natural Disaster Survival</p><p class="roblox-players"><span>3.241</span> jogando agora</p></div>
+              </div>
+              <div class="roblox-card">
+                <div class="roblox-thumb">🏰</div>
+                <div><p class="roblox-title">Work at a Pizza Place</p><p class="roblox-players"><span>1.887</span> jogando agora</p></div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-1">
+                <div class="robux">💰 Robux: <strong>0</strong> <span style="font-size:10px;color:#888;">(pede pro pai)</span></div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-1">
+                <div class="btn-group"><a href="https://www.roblox.com/pt/Login" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp" style="background:#222;border-color:#555;color:#ccc;">Entrar</a><a href="https://www.roblox.com/pt/Login" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp" style="background:#222;border-color:#555;color:#ccc;">Avatar</a></div>
+                <small style="font-size:10px;color:#888;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. TV CULTURA -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-tv">
+              <span>📺 TV Cultura — Canal 2</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://cultura.uol.com.br/upload/tvcultura/minutocultura/20220331174612_20160804130752-programa-cocorico-1-1-1-.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-tv">
+              <div class="tv-channel mb-2">📡 TV Cultura — Programação Infantil</div>
+              <div class="tv-show"><span class="tv-show-icon">🐓</span><div><strong style="font-size:11px;">Cocoricó</strong><div style="font-size:10px;color:#888;">07:00 — animação em massinha</div></div></div>
+              <div class="tv-show"><span class="tv-show-icon">🏰</span><div><strong style="font-size:11px;">Castelo Rá-Tim-Bum</strong><div style="font-size:10px;color:#888;">17:00 — educativo e divertido</div></div></div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="btn-group"><a href="https://cultura.uol.com.br/aovivo/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Assistir</a><a href="https://cultura.uol.com.br/aovivo/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Programação</a></div>
+                <small style="font-size:10px;color:#888;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. CLASH OF CLANS -->
+        <div class="col">
+          <div class="card card-2000">
+            <div class="titlebar tb-coc">
+              <span>⚔️ Clash of Clans</span>
+              <div class="tb-btns"><div class="tb-btn tb-min">_</div><div class="tb-btn tb-max">□</div><div class="tb-btn tb-cls">✕</div></div>
+            </div>
+            <div class="card-no-img" style="background-image: url('https://i.redd.it/throwback-to-2021-2017-and-2019-coc-days-v0-x2e6jxfdibeb1.jpg?width=1107&format=pjpg&auto=webp&s=df1ec6354911b6bb81fda20f9209768f304abdaa'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            </div>
+            <div class="body-coc">
+              <div class="coc-resources">
+                <div class="coc-res"><span class="coc-res-icon">⚡</span><div class="coc-res-val">2.400.000</div><div class="coc-res-label">Elixir</div></div>
+                <div class="coc-res"><span class="coc-res-icon">🪙</span><div class="coc-res-val">1.850.000</div><div class="coc-res-label">Ouro</div></div>
+              </div>
+              <div style="font-size:10px;color:#aaa;margin-bottom:6px;">🏗️ Construindo: Morteiro Nv.6</div>
+              <div class="coc-timer">⏳ Tempo restante: 08:42:17</div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="btn-group"><a href="https://play.google.com/store/apps/details?id=com.supercell.clashofclans&hl=pt_BR" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Atacar</a><a href="https://play.google.com/store/apps/details?id=com.supercell.clashofclans&hl=pt_BR" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-xp">Clã</a></div>
+                <small style="font-size:10px;color:#888;">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="py-4 text-center">
+  <div class="container">
+    <div class="mb-3">
+      <div style="font-size:11px;color:#506070;margin-bottom:5px;">Contador de visitas:</div>
+      <div class="footer-counter">0 0 1 3 3 7</div>
+    </div>
+    <p class="float-end mb-1"><a href="#">↑ Topo</a></p>
+    <p class="mb-1" style="font-size:11px;color:#506070;">Album da Geração Z © — Feito com saudade e muito Ctrl+C Ctrl+V</p>
+    <p class="mb-1 webring">← <a href="#">Site anterior</a> &nbsp;|&nbsp; <a href="#">WebRing Nostalgia BR</a> &nbsp;|&nbsp; <a href="#">Próximo site</a> →</p>
+    <p style="font-size:10px;color:#304050;">Melhor visto com Java e Flash Player instalados · Winamp tocando ao fundo</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function updateClock() {
+    const now = new Date();
+    let h = now.getHours(), m = now.getMinutes();
+    const ap = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    document.getElementById('xp-clock').innerHTML =
+      String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + '<br>' + ap;
+  }
+  updateClock(); setInterval(updateClock, 1000);
+
+  const fp = document.getElementById('flash-px');
+  if (fp) {
+    const cols = ['#ff0000','#00ff00','#0044ff','#ffff00','#ff00ff','#00ffff','#ff8800','#001133','#ffffff','#ffcc00','#00cc88','#cc0088'];
+    for (let i = 0; i < 112; i++) {
+      const d = document.createElement('div');
+      d.className = 'flash-pixel';
+      d.style.background = cols[Math.floor(Math.random() * cols.length)];
+      fp.appendChild(d);
+    }
+    setInterval(() => {
+      fp.querySelectorAll('.flash-pixel').forEach(p => {
+        if (Math.random() > 0.68) p.style.background = cols[Math.floor(Math.random() * cols.length)];
+      });
+    }, 160);
+  }
+
+  let v = 1337;
+  setInterval(() => {
+    v += Math.floor(Math.random() * 3);
+    const el = document.getElementById('counter');
+    if (el) el.textContent = String(v).padStart(7,'0');
+  }, 4000);
+</script>
+</body>
+</html>
